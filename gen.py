@@ -37,7 +37,7 @@
 # 2) run it like this:
 #   python gen.py imgui/imgui.h
 #
-# About th 'design' of this file: It is kept as simple (and so hacky partly) as possible.
+# About the 'design' of this file: It is kept as simple (and so hacky partly) as possible.
 # Clang does the most work, we just need to make sense of the result here.
 # I did not add an abstraction layer inbetween te AST walker and generators as i wanted to keep it simple.
 # It has very specific behavior to fullfil it's job as imgui binding generator.
