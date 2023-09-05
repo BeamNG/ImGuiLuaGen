@@ -23,5 +23,7 @@ Used in BeamNG to generate the ImGui wrapper
 2) run it like this:
 
    ```bash
-   python gen.py imgui/imgui.h
+   python gen.py imgui.h
    ```
+
+> Warning: It contains specific fixes for BeamNG. Please read the code to remove/improve them

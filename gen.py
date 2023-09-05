@@ -747,7 +747,7 @@ end -- global function close
 def main():
   if len(sys.argv) != 2:
     print("Usage: gen.py [input]")
-    print("Example: gen.py ../../thirdparty/source/imgui2/imgui.h")
+    print("Example: gen.py imgui.h")
     sys.exit(1)
 
   sFilename = sys.argv[1]
@@ -767,11 +767,6 @@ def main():
   #dumpCursor(translation_unit.cursor, 0)
   print("SUCCESS!")
   print("Output files are available at 'generated/*'")
-  print("")
-  print("You may want to copy the files to their appropriate locations. For example:")
-  print(" $ cp generated/imguiApiHostGenerated.cpp ../../engine/gui/imgui/")
-  print(" $ cp generated/imgui_gen.h               ../../../game/lua/common/extensions/ui/")
-  print(" $ cp generated/imgui_gen.lua             ../../../game/lua/common/extensions/ui/")
 
 if __name__ == '__main__':
   main()
