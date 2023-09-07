@@ -482,6 +482,9 @@ class BindingGenerator:
         if v == 'nil':
           res += '  -- ' + k + ' is optional and can be nil\n'
         else:
+          # remove the `f` in `M.ImVec*`. `BeginTable` contained it, and in the future, others might.
+          if v.startswith('M.ImVec') and v[len(v)-2] == 'f':
+            v = v.replace('f', '')
           res += '  if '+ k + ' == nil then ' + k + ' = ' + v + ' end\n'
 
     if len(parameter_PtrChecks) > 0:
