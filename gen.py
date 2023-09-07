@@ -209,7 +209,8 @@ def stripSizeOf(s):
   return s
 
 # converts a c value to a lua value - used for optional arguments
-def luaifyValueWithType(t, s):
+def luaifyValueWithType(p, s):
+  t = p.type
   k = t.kind
   #print(" === luaifyValue ")
   #print(" k = "+ str(k))
@@ -236,14 +237,15 @@ def luaifyValueWithType(t, s):
   elif k == TyK.TYPEDEF:
     # Need to dereference typedefs to ensure the correct lua code gets generated
     underlying_type = t.get_canonical()
-    return luaifyValueWithType(underlying_type, s)
+    p.type = underlying_type
+    return luaifyValueWithType(p, s)
   else:
-    print("unknown value type: ", k, s, ' ### parent = ', cParent.type.spelling, ' ', cParent.spelling)
+    print("unknown value type: ", k, s, ' ### parent = ', t.spelling, ' ', p.spelling)
   return s
 
 # converts a c value to a lua value - used for optional arguments
 def luaifyValue(cParent, s):
-  return luaifyValueWithType(cParent.type, s)
+  return luaifyValueWithType(cParent, s)
 
 def getLuaFunctionOptionalParams(c):
   parameter_opt = None
