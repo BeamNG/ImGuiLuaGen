@@ -528,8 +528,13 @@ class BindingGenerator:
             break
         constants.append('  ' + ch.spelling + value)
 
-    res = self.getCursorDebug(c, '// ') + '\n'
+    # handle forward decleration of enums, such as: ImGuiKey & ImGuiMouseSource.
+    if len(constants) == 0:
+      res = 'typedef ' + c.enum_type.get_canonical().spelling + ' ' + name + ';\n'
+      return res
+
     #res = res + '\ntypedef int ' + name + ';\n'
+    res = self.getCursorDebug(c, '// ') + '\n'
     res = res + 'typedef enum {\n' + ',\n'.join(constants) + '\n} ' + name + ';\n'
     return res
 
